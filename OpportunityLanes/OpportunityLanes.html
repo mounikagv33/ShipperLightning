@@ -1,0 +1,40 @@
+<template>
+    <div class="slds-card">
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:product_item" size="small" title="Opportunity Lanes">
+                            </lightning-icon>
+                        </div>
+                        <div class="slds-media__body slds-align-middle">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-card__header-title slds-truncate">Opportunity Lanes</span>
+                                </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <template if:true={oppLanesRec}>
+            <lightning-datatable
+                key-field="id"
+                hide-checkbox-column
+                resize-column-disabled
+                show-row-number-column
+                data={oppLanesRec}
+                columns={columns}>
+            </lightning-datatable>
+        </template>
+        <template if:false={oppLanesRec}>
+            <div class="slds-text-align_center">
+                <p class="slds-form-element__label message">No Opportunity Lanes to display.</p>
+            </div>
+        </template>
+    </div> 
+</template>
