@@ -1,0 +1,43 @@
+<template>
+  <div if:true={isLoading} class="slds-modal slds-fade-in-open">
+    <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </div>
+  <lightning-quick-action-panel header={titleName}>
+    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+      <lightning-card title={subtitleName}>
+        <template if:false={noRecords}>
+            <lightning-datatable key-field="Id"
+                                 data={olirecords}
+                                 columns={columns}
+                                 draft-values={saveDraftValues}
+                                 onsave={handleSave}
+                                 hide-checkbox-column="true"
+                                 show-row-number-column="true"
+                                 onrowaction={handleRowAction}>
+            </lightning-datatable>
+        </template>
+        <template if:true={noRecords}>
+            <div class="slds-m-around_medium">
+                <p>
+                    No records to display
+                </p>
+            </div>
+        </template>
+        <br/>
+        <div class="slds-grid">
+          <div class="slds-size_1-of-5">
+            <select class="slds-select" id="select-01" onchange={handleGetSelectedValue}>
+              <template for:each = {productInfo} for:item="OLI">
+                <option key={OLI.Id} value={OLI.Id}>{OLI.Name}</option>
+              </template>
+            </select>
+          </div>
+          <div class="slds-size_3-of-5">
+            <button class="slds-button slds-button_brand" onclick={addEquipment} title="Save">Add Equipment</button>
+          </div>
+        </div>
+      </lightning-card>
+    </div>
+  </lightning-quick-action-panel>
+</template>
